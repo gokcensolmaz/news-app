@@ -1,6 +1,15 @@
 package com.example.appcentnewsapp.data.remote
 
+import com.example.appcentnewsapp.data.remote.respond.NewsArticleDto
+import retrofit2.http.GET
+
 interface NewsApi {
+
+    @GET()
+    suspend fun getNewsArticles(
+
+    ): NewsArticleDto
+
 
 
 
