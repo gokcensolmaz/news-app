@@ -6,7 +6,7 @@ import com.example.appcentnewsapp.data.remote.response.Article
 
 class NewsPagingResource(
     private val newsApi: NewsApi,
-    private val language: String
+    private val sources: String
 ) : PagingSource<Int, Article>() {
 
     // Count the number of articles that fetch from API
@@ -14,7 +14,7 @@ class NewsPagingResource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         val page = params.key ?: 1
         return try {
-            val newsResponse = newsApi.getNews(language = language, page = page)
+            val newsResponse = newsApi.getNews(sources = sources, page = page)
             totalNewsCount += newsResponse.articles.size
             val articles = newsResponse.articles.distinctBy { it.title }
             LoadResult.Page(

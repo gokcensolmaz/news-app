@@ -10,7 +10,7 @@ interface NewsApi {
     suspend fun getNews(
         @Query("page") page: Int,
         @Query("apiKey") apiKey: String = API_KEY,
-        @Query("language") language: String
+        @Query("sources") sources: String
     ): NewsResponse
 
     @GET("everything")
@@ -18,8 +18,10 @@ interface NewsApi {
         @Query("q") searchQuery: String,
         @Query("page") page: Int,
         @Query("apiKey") apiKey: String = API_KEY,
-        @Query("language") language: String
+        @Query("sources") sources: String
     ): NewsResponse
+
+
 
     companion object {
         const val BASE_URL = "https://newsapi.org/v2/"
