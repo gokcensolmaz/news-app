@@ -6,7 +6,6 @@ import com.example.appcentnewsapp.data.local.Article
 
 class SearchNewsPagingResource(
     private val newsApi: NewsApi,
-    private val sources: String,
     private val searchQuery: String
 ) : PagingSource<Int, Article>() {
     private var totalNewsCount = 0
@@ -14,7 +13,7 @@ class SearchNewsPagingResource(
         val page = params.key ?: 1
         return try {
             val newsResponse =
-                newsApi.searchNews(searchQuery = searchQuery, page = page, sources = sources)
+                newsApi.searchNews(searchQuery = searchQuery, page = page)
             totalNewsCount += newsResponse.articles.size
             val articles = newsResponse.articles.distinctBy { it.title }
             LoadResult.Page(

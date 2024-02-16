@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 class SearchNews(
     private val newsRepository: NewsRepository
 ) {
-    suspend operator fun invoke(searchQuery: String, sources: List<String>): Flow<PagingData<Article>> {
-        return newsRepository.searchNews(searchQuery = searchQuery, sources = sources)
+    operator fun invoke(searchQuery: String): Flow<PagingData<Article>> {
+        return newsRepository.searchNews(searchQuery = searchQuery)
     }
 }
