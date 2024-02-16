@@ -27,7 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.appcentnewsapp.R
-import com.example.appcentnewsapp.data.remote.response.Article
+import com.example.appcentnewsapp.data.local.Article
 import com.example.appcentnewsapp.data.remote.response.Source
 import com.example.appcentnewsapp.presentation.Dimensions.ArticleCardSize
 import com.example.appcentnewsapp.presentation.Dimensions.ExtraSmallPadding

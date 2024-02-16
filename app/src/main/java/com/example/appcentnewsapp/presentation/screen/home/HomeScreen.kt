@@ -11,7 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.LazyPagingItems
-import com.example.appcentnewsapp.data.remote.response.Article
+import com.example.appcentnewsapp.data.local.Article
 import com.example.appcentnewsapp.presentation.Dimensions.ExtraSmallPadding2
 import com.example.appcentnewsapp.presentation.Dimensions.MediumPadding1
 import com.example.appcentnewsapp.presentation.screen.components.ArticleCard

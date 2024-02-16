@@ -1,5 +1,5 @@
 package com.example.appcentnewsapp.util
 
 object Constants {
-    const val USER_SETTINGS = "userSettings"
+    const val NEWS_DATABASE_NAME = "news.db"
 }

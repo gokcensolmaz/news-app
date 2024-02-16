@@ -2,7 +2,7 @@ package com.example.appcentnewsapp.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.appcentnewsapp.data.remote.response.Article
+import com.example.appcentnewsapp.data.local.Article
 
 class NewsPagingResource(
     private val newsApi: NewsApi,
