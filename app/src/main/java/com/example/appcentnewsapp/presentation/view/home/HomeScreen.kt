@@ -1,4 +1,4 @@
-package com.example.appcentnewsapp.presentation.screen.home
+package com.example.appcentnewsapp.presentation.view.home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
@@ -12,9 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.LazyPagingItems
 import com.example.appcentnewsapp.data.local.Article
-import com.example.appcentnewsapp.presentation.Dimensions.ExtraSmallPadding2
-import com.example.appcentnewsapp.presentation.Dimensions.MediumPadding1
-import com.example.appcentnewsapp.presentation.screen.components.ArticleCard
+import com.example.appcentnewsapp.util.Dimensions.ExtraSmallPadding2
+import com.example.appcentnewsapp.util.Dimensions.MediumPadding1
+import com.example.appcentnewsapp.presentation.view.components.ArticleCard
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

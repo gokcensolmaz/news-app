@@ -1,4 +1,4 @@
-package com.example.appcentnewsapp.presentation.screen.components
+package com.example.appcentnewsapp.presentation.view.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.clickable
@@ -29,10 +29,10 @@ import coil.request.ImageRequest
 import com.example.appcentnewsapp.R
 import com.example.appcentnewsapp.data.local.Article
 import com.example.appcentnewsapp.data.remote.response.Source
-import com.example.appcentnewsapp.presentation.Dimensions.ArticleCardSize
-import com.example.appcentnewsapp.presentation.Dimensions.ExtraSmallPadding
-import com.example.appcentnewsapp.presentation.Dimensions.ExtraSmallPadding2
-import com.example.appcentnewsapp.presentation.Dimensions.SmallIconSize
+import com.example.appcentnewsapp.util.Dimensions.ArticleCardSize
+import com.example.appcentnewsapp.util.Dimensions.ExtraSmallPadding
+import com.example.appcentnewsapp.util.Dimensions.ExtraSmallPadding2
+import com.example.appcentnewsapp.util.Dimensions.SmallIconSize
 import com.example.appcentnewsapp.ui.theme.AppcentNewsAppTheme
 
 @Composable

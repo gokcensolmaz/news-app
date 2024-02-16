@@ -1,4 +1,4 @@
-package com.example.appcentnewsapp.presentation
+package com.example.appcentnewsapp.util
 
 import androidx.compose.ui.unit.dp
 

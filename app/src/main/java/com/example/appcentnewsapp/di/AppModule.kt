@@ -6,7 +6,6 @@ import com.example.appcentnewsapp.data.local.NewsDao
 import com.example.appcentnewsapp.data.local.NewsDatabase
 import com.example.appcentnewsapp.data.local.SourceTypeConverter
 import com.example.appcentnewsapp.data.remote.NewsApi
-import com.example.appcentnewsapp.data.remote.NewsApi.Companion.BASE_URL
 import com.example.appcentnewsapp.data.repository.NewsRepositoryImpl
 import com.example.appcentnewsapp.domain.repository.NewsRepository
 import com.example.appcentnewsapp.domain.useCases.DeleteArticle
@@ -16,6 +15,7 @@ import com.example.appcentnewsapp.domain.useCases.GetNews
 import com.example.appcentnewsapp.domain.useCases.NewsUseCases
 import com.example.appcentnewsapp.domain.useCases.SearchNews
 import com.example.appcentnewsapp.domain.useCases.UpsertArticle
+import com.example.appcentnewsapp.util.Constants.BASE_URL
 import com.example.appcentnewsapp.util.Constants.NEWS_DATABASE_NAME
 import dagger.Module
 import dagger.Provides
