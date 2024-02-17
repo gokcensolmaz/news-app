@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -24,6 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.appcentnewsapp.R
@@ -44,7 +46,7 @@ fun ArticleCard(
         AsyncImage(
             modifier = Modifier
                 .size(ArticleCardSize)
-                .clip(MaterialTheme.shapes.medium),
+                .clip(RoundedCornerShape(8.dp)),
             contentScale = ContentScale.Crop,
             model = ImageRequest.Builder(context).data(article.urlToImage).build(),
             contentDescription = null
@@ -53,7 +55,7 @@ fun ArticleCard(
             modifier = Modifier
                 .padding(horizontal = ExtraSmallPadding)
                 .height(ArticleCardSize),
-            verticalArrangement = Arrangement.SpaceAround
+            verticalArrangement = Arrangement.SpaceEvenly
         ) {
             Text(
                 text = article.title,
@@ -61,29 +63,21 @@ fun ArticleCard(
                 color = colorResource(
                     id = R.color.text_title
                 ),
+                fontWeight = FontWeight.Bold,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = article.source.name,
-                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                    color = colorResource(id = R.color.body)
-                )
-                Spacer(modifier = Modifier.width(ExtraSmallPadding2))
-                Icon(
-                    modifier = Modifier.size(SmallIconSize),
-                    painter = painterResource(id = R.drawable.ic_time),
-                    contentDescription = null,
-                    tint = colorResource(id = R.color.body)
-                )
-                Spacer(modifier = Modifier.width(ExtraSmallPadding2))
-                Text(
-                    text = article.publishedAt,
-                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                    color = colorResource(id = R.color.body)
-                )
-            }
+            Text(
+                modifier = modifier.padding(start = 8.dp),
+                text = article.description,
+                style = MaterialTheme.typography.bodySmall,
+                color = colorResource(
+                    id = R.color.text_title
+                ),
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+
         }
     }
 }
@@ -98,7 +92,7 @@ fun ArticleCardPreview() {
             article = Article(
                 author = "",
                 content = "",
-                description = "",
+                description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus velit arcu, finibus nec aliquet sed, efficitur ut tortor. Nulla consequat ante ac augue auctor tempor. Aliquam sit amet maximus nunc, sed suscipit neque. Sed eros lectus, finibus vel nulla sit amet, viverra consectetur nisi. Curabitur cursus nunc ut nisl dictum vehicula. Donec tempor nec libero id lobortis. Aliquam condimentum nec nulla viverra tempus. Donec finibus a purus et ultrices.",
                 publishedAt = "2 hours",
                 source = Source(id = "", name = "BBC"),
                 title = "Her train broke down. Her phone died. And then she met her Saver in a",

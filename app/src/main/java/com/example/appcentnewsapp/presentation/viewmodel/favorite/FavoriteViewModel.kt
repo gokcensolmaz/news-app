@@ -14,6 +14,7 @@ import javax.inject.Inject
 class FavoriteViewModel @Inject constructor(
     private val newsUseCases: NewsUseCases
 ) : ViewModel() {
+
     private val _state = mutableStateOf(FavoriteState())
     val state: State<FavoriteState> = _state
 
@@ -23,8 +24,7 @@ class FavoriteViewModel @Inject constructor(
 
     private fun getArticles() {
         newsUseCases.getArticleList().onEach {
-            _state.value = _state.value.copy(favoriteArticles = it.asReversed())
+            _state.value = _state.value.copy(articles = it.asReversed())
         }.launchIn(viewModelScope)
     }
-
 }

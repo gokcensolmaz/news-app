@@ -7,4 +7,11 @@
     <color name="input_background">#fff</color>
     <color name="placeholder">#A0A3BD</color>
     <color name="shimmer">#C3C3C3</color>
+
+
+    <color name="app_title">#000000</color>
+    <color name="input_text">#000000</color>
+    <color name="appcent">#FFFFFF</color>
+    <color name="appcent_text">#1D262F</color>
+    <color name="appcent_indicator">#E2A182</color>
 </resources>

@@ -18,19 +18,19 @@ class DetailsViewModel @Inject constructor(
     var sideEffect by mutableStateOf<String?>(null)
         private set
 
-    fun onEvent(event: DetailsEvent){
-        when(event){
+    fun onEvent(event: DetailsEvent) {
+        when (event) {
             is DetailsEvent.UpsertDeleteArticle -> {
-                viewModelScope.launch{
+                viewModelScope.launch {
                     val article = newsUseCases.getArticle(event.article.url)
-                    if(article  == null){
+                    if (article == null) {
                         upsertArticle(event.article)
                     } else {
                         deleteArticle(event.article)
                     }
                 }
             }
-            is DetailsEvent.RemoveSideEffect -> {
+            is DetailsEvent.RemoveSideEffect ->{
                 sideEffect = null
             }
         }

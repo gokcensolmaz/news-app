@@ -3,7 +3,7 @@ package com.example.appcentnewsapp.domain.useCases
 import com.example.appcentnewsapp.data.local.Article
 import com.example.appcentnewsapp.domain.repository.NewsRepository
 
-class GetArticle(
+class GetArticle (
     private val newsRepository: NewsRepository
 ) {
 

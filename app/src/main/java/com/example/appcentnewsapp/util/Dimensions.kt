@@ -1,6 +1,7 @@
 package com.example.appcentnewsapp.util
 
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 object Dimensions {
     val ExtraSmallPadding = 3.dp
@@ -11,11 +12,13 @@ object Dimensions {
     val IndicatorSize = 14.dp
 
     val SmallIconSize = 11.dp
-    val IconSize = 20.dp
+    val IconSize = 30.dp
 
     val ArticleCardSize = 96.dp
     val ArticleImageHeight = 248.dp
 
     val PageIndicatorWidth = 52.dp
+
+    val topAppBarTitleSize = 30.sp
 
 }

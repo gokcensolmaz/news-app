@@ -3,31 +3,60 @@ package com.example.appcentnewsapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.appcentnewsapp.data.local.Article
+import com.example.appcentnewsapp.data.local.NewsDao
+import com.example.appcentnewsapp.data.remote.response.Source
+import com.example.appcentnewsapp.navigation.Destination
+import com.example.appcentnewsapp.navigation.Navigation
 import com.example.appcentnewsapp.presentation.view.home.HomeScreen
+import com.example.appcentnewsapp.presentation.view.search.SearchScreen
 import com.example.appcentnewsapp.presentation.viewmodel.home.HomeViewModel
 import com.example.appcentnewsapp.ui.theme.AppcentNewsAppTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             AppcentNewsAppTheme {
-                // A surface container using the 'background' color from the theme
+                val isSystemInDarkMode = isSystemInDarkTheme()
+                val systemController = rememberSystemUiController()
+
+                SideEffect{
+                    systemController.run {
+                        setSystemBarsColor(
+                            color = Color.Transparent,
+                            darkIcons = !isSystemInDarkMode
+                        )
+                    }
+                }
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = colorResource(id = R.color.appcent)
                 ) {
-                    val viewModel: HomeViewModel = hiltViewModel()
-                    val articles = viewModel.news.collectAsLazyPagingItems()
-                    HomeScreen(articles = articles)
+                    Navigation()
                 }
             }
         }
