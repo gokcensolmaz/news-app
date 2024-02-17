@@ -11,11 +11,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.example.appcentnewsapp.R
 import com.example.appcentnewsapp.data.local.Article
 import com.example.appcentnewsapp.presentation.view.components.ArticlesList
+import com.example.appcentnewsapp.presentation.view.components.NewsTopAppBar
 import com.example.appcentnewsapp.presentation.viewmodel.favorite.FavoriteState
+import com.example.appcentnewsapp.util.Dimensions
 import com.example.appcentnewsapp.util.Dimensions.MediumPadding1
 
 @Composable
@@ -26,13 +30,15 @@ fun FavoriteScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .statusBarsPadding()
-            .padding(top = MediumPadding1, start = MediumPadding1, end = MediumPadding1)
     ) {
+        NewsTopAppBar(onBackClick = {})
+
         Text(
-            text = "Favorite",
-            style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.Bold),
-            color = colorResource(id = R.color.text_title)
+            modifier = Modifier.padding(horizontal = 16.dp),
+            text = "❤\uFE0F Favorite",
+            fontSize = Dimensions.topAppBarTitleSize,
+            fontWeight = FontWeight.Bold,
+            color = colorResource(id = R.color.appcent_text)
         )
 
         Spacer(modifier = Modifier.height(MediumPadding1))

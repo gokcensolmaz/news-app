@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -32,6 +33,7 @@ import com.example.appcentnewsapp.presentation.view.details.DetailsScreen
 import com.example.appcentnewsapp.presentation.view.favorite.FavoriteScreen
 import com.example.appcentnewsapp.presentation.view.home.HomeScreen
 import com.example.appcentnewsapp.presentation.view.search.SearchScreen
+import com.example.appcentnewsapp.presentation.view.webview.WebViewScreen
 import com.example.appcentnewsapp.presentation.viewmodel.details.DetailsEvent
 import com.example.appcentnewsapp.presentation.viewmodel.details.DetailsViewModel
 import com.example.appcentnewsapp.presentation.viewmodel.favorite.FavoriteViewModel
@@ -158,14 +160,36 @@ fun Navigation() {
                         DetailsScreen(
                             article = article,
                             event = viewModel::onEvent,
-                            navigateUp = { navController.navigateUp() })
+                            navigateUp = { navController.navigateUp() },
+                            navigateToWebView = {
+                                navigateToWebView(
+                                    navController = navController,
+                                    article = article
+                                )
+                            }
+                        )
+
                     }
             }
             composable(Destination.WebviewScreen.route) {
-                Text(text = "Web view Screen")
+                navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")
+                    ?.let { article ->
+                        WebViewScreen(
+                            url = article.url,
+                            navigateUp = { navController.navigateUp() },
+                        )
+
+                    }
+
             }
         }
     }
+}
+
+fun navigateToWebView(navController: NavController, article: Article) {
+    navController.currentBackStackEntry?.savedStateHandle?.set("article", article)
+    navController.navigate(Destination.WebviewScreen.route)
+
 }
 
 private fun navigateToTap(navController: NavController, route: String) {
