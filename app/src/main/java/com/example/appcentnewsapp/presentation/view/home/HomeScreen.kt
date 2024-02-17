@@ -10,16 +10,22 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
+import com.example.appcentnewsapp.R
 import com.example.appcentnewsapp.data.local.Article
 import com.example.appcentnewsapp.util.Dimensions.ExtraSmallPadding2
 import com.example.appcentnewsapp.util.Dimensions.MediumPadding1
 import com.example.appcentnewsapp.presentation.view.components.ArticleCard
 import com.example.appcentnewsapp.presentation.view.components.NewsTopAppBar
 import com.example.appcentnewsapp.presentation.view.components.SearchBar
+import com.example.appcentnewsapp.util.Dimensions.topAppBarTitleSize
 
 
 @Composable
@@ -32,17 +38,15 @@ fun HomeScreen(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        NewsTopAppBar()
+        NewsTopAppBar(onBackClick = {})
 
-
-        SearchBar(
-            modifier = Modifier.padding(horizontal = 25.dp),
-            text = "",
-            readOnly = true,
-            onValueChange = {},
-            onSearch = { },
-            onClick = { navigateToSearch() },
-            onCleanBar = {}
+        Text(
+            modifier = Modifier.padding(horizontal = 16.dp),
+            text = "\uD83D\uDFE5 Breaking News",
+            fontSize = topAppBarTitleSize,
+            fontStyle = FontStyle.Italic,
+            fontWeight = FontWeight.Bold,
+            color = colorResource(id = R.color.appcent_text)
         )
 
         Spacer(modifier = Modifier.height(MediumPadding1))
@@ -55,7 +59,7 @@ fun HomeScreen(
 
             items(count = articles.itemCount) {
                 articles[it]?.let { article ->
-                    ArticleCard(article = article, onClick = {navigateToDetails(article) })
+                    ArticleCard(article = article, onClick = { navigateToDetails(article) })
                 }
             }
         }

@@ -42,6 +42,20 @@ class NewsRepositoryImpl(
         ).flow
     }
 
+    override fun searchNewsWithCategory(
+        searchQuery: String
+    ): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10),
+            pagingSourceFactory = {
+                SearchNewsPagingResource(
+                    newsApi = newsApi,
+                    searchQuery = searchQuery
+                )
+            }
+        ).flow
+    }
+
     override suspend fun upsertArticle(article: Article) {
         newsDao.upsertArticle(article)
     }
