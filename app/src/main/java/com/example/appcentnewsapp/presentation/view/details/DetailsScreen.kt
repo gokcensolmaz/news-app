@@ -1,5 +1,6 @@
 package com.example.appcentnewsapp.presentation.view.details
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
@@ -47,6 +48,7 @@ import com.example.appcentnewsapp.util.Dimensions.ArticleImageHeight
 import com.example.appcentnewsapp.util.Dimensions.MediumPadding1
 
 
+@SuppressLint("QueryPermissionsNeeded")
 @Composable
 fun DetailsScreen(
     article: Article,
