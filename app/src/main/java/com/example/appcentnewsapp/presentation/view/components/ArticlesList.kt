@@ -4,15 +4,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.example.appcentnewsapp.data.local.Article
-import com.example.appcentnewsapp.presentation.view.search.SearchCategoryScreen
-import com.example.appcentnewsapp.presentation.viewmodel.search.SearchEvent
 import com.example.appcentnewsapp.util.Dimensions.ExtraSmallPadding2
 import com.example.appcentnewsapp.util.Dimensions.MediumPadding1
 

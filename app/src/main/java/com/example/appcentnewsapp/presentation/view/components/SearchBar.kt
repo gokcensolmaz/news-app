@@ -90,16 +90,17 @@ fun SearchBar(
                 Text(
                     text = "Search",
                     style = MaterialTheme.typography.bodySmall,
-                    color = colorResource(id = R.color.placeholder)
+                    color = colorResource(id = R.color.appcent)
                 )
             },
             shape = MaterialTheme.shapes.medium,
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = colorResource(id = R.color.input_background),
-                unfocusedContainerColor = colorResource(id = R.color.input_background),
-                disabledContainerColor = colorResource(id = R.color.input_background),
-                focusedTextColor = colorResource(id = R.color.input_text),
-                cursorColor = colorResource(id = R.color.input_text),
+                focusedContainerColor = colorResource(id = R.color.appcent_text),
+                unfocusedContainerColor = colorResource(id = R.color.appcent_text),
+                disabledContainerColor = colorResource(id = R.color.appcent_text),
+                focusedTextColor = colorResource(id = R.color.appcent),
+                unfocusedTextColor = colorResource(id = R.color.appcent),
+                cursorColor = colorResource(id = R.color.appcent),
                 disabledIndicatorColor = Color.Transparent,
                 errorIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,

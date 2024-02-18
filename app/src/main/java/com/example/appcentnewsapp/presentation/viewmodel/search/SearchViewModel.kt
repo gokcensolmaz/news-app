@@ -32,8 +32,8 @@ class SearchViewModel @Inject constructor(
             }
 
             is SearchEvent.searchNewsWithCategory -> {
-                _state.value = state.value.copy(event.searchQuery)
-                searchNewsWithCategory()
+                _state.value = state.value.copy(searchQuery = event.searchQuery)
+                searchNewsWithCategory(event.searchQuery)
             }
         }
     }
@@ -45,9 +45,9 @@ class SearchViewModel @Inject constructor(
         _state.value = state.value.copy(articles = articles)
     }
 
-    private fun searchNewsWithCategory() {
+    private fun searchNewsWithCategory(category: String) {
         val articles = newsUseCases.searchNewsWithCategory(
-            searchQuery = state.value.searchQuery
+            searchQuery = category.lowercase()
         ).cachedIn(viewModelScope)
         _state.value = state.value.copy(articles = articles)
     }

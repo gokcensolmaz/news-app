@@ -21,6 +21,7 @@ import com.example.appcentnewsapp.presentation.viewmodel.search.SearchEvent
 import com.example.appcentnewsapp.presentation.viewmodel.search.SearchState
 import com.example.appcentnewsapp.util.Dimensions
 import com.example.appcentnewsapp.util.Dimensions.MediumPadding1
+import com.example.appcentnewsapp.util.Dimensions.MediumPadding2
 
 
 @Composable
@@ -56,6 +57,14 @@ fun SearchScreen(
 
 
         if (state.articles == null) {
+            Text(
+                modifier = Modifier.padding(horizontal = 18.dp),
+                text = "\uD83D\uDDC2\uFE0F Categories",
+                fontSize = Dimensions.categoriesSize,
+                fontWeight = FontWeight.SemiBold,
+                color = colorResource(id = R.color.appcent_text)
+            )
+            Spacer(modifier= Modifier.height(MediumPadding2))
             SearchCategoryScreen(
                 onClick = { event(SearchEvent.searchNewsWithCategory(it)) }
             )

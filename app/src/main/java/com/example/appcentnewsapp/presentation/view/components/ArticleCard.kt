@@ -57,7 +57,7 @@ fun ArticleCard(
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Text(
-                    text = article.title ?: "",
+                    text = article.title ?: "Title not available",
                     style = MaterialTheme.typography.bodyMedium,
                     color = colorResource(
                         id = R.color.text_title
@@ -67,7 +67,7 @@ fun ArticleCard(
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = article.description ?: "",
+                    text = article.description ?: "Description not available",
                     style = MaterialTheme.typography.bodySmall,
                     color = colorResource(
                         id = R.color.text_title
@@ -91,7 +91,7 @@ fun ArticleCard(
                         Spacer(modifier = Modifier.width(ExtraSmallPadding2))
 
                         Text(
-                            text = article.source.name,
+                            text = article.source.name ?: "Source Name",
                             style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                             color = colorResource(id = R.color.body)
                         )
@@ -106,28 +106,24 @@ fun ArticleCard(
                         )
                         Spacer(modifier = Modifier.width(ExtraSmallPadding2))
                         Text(
-                            text = article.publishedAt.split("T")[0],
+                            text = article.publishedAt.split("T")[0] ?: "Date",
                             style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                             color = colorResource(id = R.color.body)
                         )
                     }
                 }
-
             }
-
         }
 
         Box(modifier = Modifier.weight(0.2f)) {
-            AsyncImage(
+            NewsImageBox(
+                article = article,
                 modifier = Modifier
                     .size(ArticleCardSize)
                     .clip(RoundedCornerShape(8.dp)),
-                contentScale = ContentScale.Crop,
-                model = ImageRequest.Builder(context).data(article.urlToImage).build(),
-                contentDescription = null
             )
-        }
 
+        }
     }
 }
 
@@ -148,8 +144,6 @@ fun ArticleCardPreview() {
                 url = "",
                 urlToImage = ""
             )
-        ) {
-
-        }
+        ) {}
     }
 }

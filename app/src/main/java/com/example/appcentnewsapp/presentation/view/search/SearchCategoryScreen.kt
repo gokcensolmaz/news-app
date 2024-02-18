@@ -25,8 +25,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.appcentnewsapp.R
 
 @Composable
@@ -39,48 +41,51 @@ fun SearchCategoryScreen(
             CategoryCardItem(
                 imageId = R.drawable.business_crop,
                 contentDescription = "Business Category",
-                title = "Business Category",
+                title = "Business",
                 onClick = { onClick("Business") }
             ),
             CategoryCardItem(
                 imageId = R.drawable.entertainment_crop,
                 contentDescription = "Entertainment Category",
-                title = "Entertainment Category",
+                title = "Entertainment",
                 onClick = { onClick("Entertainment") }
             ),
             CategoryCardItem(
                 imageId = R.drawable.general_crop,
                 contentDescription = "General Category",
-                title = "General Category",
+                title = "General",
                 onClick = { onClick("General") }
             ),
             CategoryCardItem(
                 imageId = R.drawable.health_crop,
                 contentDescription = "Health Category",
-                title = "Health Category",
+                title = "Health",
                 onClick = { onClick("Health") }
             ),
             CategoryCardItem(
                 imageId = R.drawable.science_crop,
                 contentDescription = "Science Category",
-                title = "Science Category",
+                title = "Science",
                 onClick = { onClick("Science") }
             ),
             CategoryCardItem(
                 imageId = R.drawable.sport_crop,
                 contentDescription = "Sport Category",
-                title = "Sport Category",
+                title = "Sport",
                 onClick = { onClick("Sport") }
             ),
             CategoryCardItem(
                 imageId = R.drawable.technology_crop,
                 contentDescription = "Technology Category",
-                title = "Technology Category",
+                title = "Technology",
                 onClick = { onClick("Technology") }
             )
         )
     }
-    LazyRow(horizontalArrangement = Arrangement.SpaceBetween) {
+    LazyRow(
+        horizontalArrangement = Arrangement.SpaceBetween,
+
+        ) {
         items(categoryCardItems) { categoryCardItem ->
             CategoryCard(categoryCardItem = categoryCardItem)
         }
@@ -91,7 +96,7 @@ data class CategoryCardItem(
     val imageId: Int,
     val contentDescription: String,
     val title: String,
-    val onClick: () -> Unit
+    val onClick: (String) -> Unit
 )
 
 @Composable
@@ -101,10 +106,10 @@ fun CategoryCard(
 ) {
     Card(
         modifier = modifier
-            .height(200.dp)
-            .width(200.dp)
+            .height(150.dp)
+            .width(150.dp)
             .padding(5.dp)
-            .clickable { categoryCardItem.onClick },
+            .clickable { categoryCardItem.onClick(categoryCardItem.title) },
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 30.dp,
@@ -131,9 +136,11 @@ fun CategoryCard(
                     text = categoryCardItem.title,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color(0x90FFFFFF))
+                        .background(Color(0x861D262F))
                         .padding(5.dp),
-                    color = colorResource(R.color.appcent_text)
+                    color = colorResource(R.color.appcent_text),
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 17.sp
 
                 )
 
@@ -156,7 +163,7 @@ fun CategoryCardPreview() {
         CategoryCardItem(
             imageId = R.drawable.business_crop,
             contentDescription = "Business Category",
-            title = "Business Category",
+            title = "Business",
             onClick = {}
         )
     )
