@@ -7,7 +7,7 @@ object Dimensions {
     val ExtraSmallPadding = 3.dp
     val ExtraSmallPadding2 = 6.dp
     val MediumPadding1 = 24.dp
-    val MediumPadding2 = 30.dp
+    val MediumPadding2 = 14.dp
 
     val IndicatorSize = 14.dp
 

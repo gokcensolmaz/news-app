@@ -23,8 +23,10 @@ import com.example.appcentnewsapp.data.local.Article
 import com.example.appcentnewsapp.util.Dimensions.ExtraSmallPadding2
 import com.example.appcentnewsapp.util.Dimensions.MediumPadding1
 import com.example.appcentnewsapp.presentation.view.components.ArticleCard
+import com.example.appcentnewsapp.presentation.view.components.ArticlesList
 import com.example.appcentnewsapp.presentation.view.components.NewsTopAppBar
 import com.example.appcentnewsapp.presentation.view.components.SearchBar
+import com.example.appcentnewsapp.util.Dimensions.MediumPadding2
 import com.example.appcentnewsapp.util.Dimensions.topAppBarTitleSize
 
 
@@ -51,18 +53,13 @@ fun HomeScreen(
 
         Spacer(modifier = Modifier.height(MediumPadding1))
 
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(MediumPadding1),
-            contentPadding = PaddingValues(all = ExtraSmallPadding2)
-        ) {
-
-            items(count = articles.itemCount) {
-                articles[it]?.let { article ->
-                    ArticleCard(article = article, onClick = { navigateToDetails(article) })
-                }
+        ArticlesList(
+            modifier = Modifier.padding(horizontal = MediumPadding2),
+            articles = articles,
+            onClick = {
+                navigateToDetails(it)
             }
-        }
+        )
     }
 
 }

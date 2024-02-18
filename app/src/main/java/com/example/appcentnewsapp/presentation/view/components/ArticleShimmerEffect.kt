@@ -28,6 +28,7 @@ import com.example.appcentnewsapp.R
 import com.example.appcentnewsapp.ui.theme.AppcentNewsAppTheme
 import com.example.appcentnewsapp.util.Dimensions
 import com.example.appcentnewsapp.util.Dimensions.MediumPadding1
+import com.example.appcentnewsapp.util.Dimensions.MediumPadding2
 
 
 @SuppressLint("ModifierFactoryUnreferencedReceiver")
@@ -39,55 +40,59 @@ fun Modifier.shimmerEffect() = composed {
         animationSpec = infiniteRepeatable(
             animation = tween(durationMillis = 1000), repeatMode = RepeatMode.Reverse
         ),
+        label = "",
     ).value
     background(color = colorResource(id = R.color.shimmer).copy(alpha = alpha))
 }
 
 @Composable
 fun ArticleCardShimmerEffect(
-    modifier: Modifier = Modifier
 ) {
-    Row(modifier = modifier) {
+    Row(modifier = Modifier.padding(10.dp)) {
+
+        Box(modifier = Modifier.weight(0.7f)) {
+            Column(
+                modifier = Modifier
+                    .height(Dimensions.ArticleCardSize),
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(30.dp)
+                        .padding(horizontal = MediumPadding2)
+                        .shimmerEffect(),
+
+                    )
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(15.dp)
+                        .padding(horizontal = MediumPadding2)
+                        .shimmerEffect(),
+
+                    )
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(15.dp)
+                        .padding(horizontal = MediumPadding2)
+                        .shimmerEffect(),
+
+                    )
+
+            }
+        }
+
         Box(
             modifier = Modifier
                 .size(Dimensions.ArticleCardSize)
                 .clip(MaterialTheme.shapes.medium)
+                .weight(0.3f)
                 .shimmerEffect(),
 
             )
-        Column(
-            modifier = Modifier
-                .padding(horizontal = Dimensions.ExtraSmallPadding)
-                .height(Dimensions.ArticleCardSize),
-            verticalArrangement = Arrangement.SpaceAround
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(30.dp)
-                    .padding(horizontal = MediumPadding1)
-                    .shimmerEffect(),
-
-                )
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(15.dp)
-                    .padding(horizontal = MediumPadding1)
-                    .shimmerEffect(),
-
-                )
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(15.dp)
-                    .padding(horizontal = MediumPadding1)
-                    .shimmerEffect(),
-
-                )
-
-        }
     }
 }
 

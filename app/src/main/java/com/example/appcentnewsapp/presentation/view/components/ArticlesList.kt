@@ -81,10 +81,11 @@ fun handlePagingResult(
         }
 
         error != null -> {
-
+            EmptyScreen(error = error)
             false
         }
         articles.itemCount == 0 ->{
+            EmptyScreen()
             false
         }
 
@@ -97,6 +98,6 @@ fun handlePagingResult(
 private fun ShimmerEffect() {
 
     Column(verticalArrangement = Arrangement.spacedBy(MediumPadding1)) {
-        ArticleCardShimmerEffect(modifier = Modifier.padding(horizontal = MediumPadding1))
+        ArticleCardShimmerEffect()
     }
 }
