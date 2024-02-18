@@ -154,14 +154,7 @@ fun DetailsScreen(
             Button(
                 modifier = Modifier.align(Alignment.Center),
                 onClick = {
-
                     navigateToWebView()
-                    Intent(Intent.ACTION_VIEW).also {
-                        it.data = Uri.parse(article.url)
-                        if (it.resolveActivity(context.packageManager) != null) {
-                            context.startActivity(it)
-                        }
-                    }
                 }, colors = ButtonDefaults.buttonColors(
                     containerColor = colorResource(R.color.appcent_indicator)
 
