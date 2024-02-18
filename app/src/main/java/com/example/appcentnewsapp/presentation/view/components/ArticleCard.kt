@@ -3,6 +3,7 @@ package com.example.appcentnewsapp.presentation.view.components
 import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -43,42 +44,48 @@ fun ArticleCard(
 ) {
     val context = LocalContext.current
     Row(modifier = modifier.clickable { onClick() }) {
-        AsyncImage(
-            modifier = Modifier
-                .size(ArticleCardSize)
-                .clip(RoundedCornerShape(8.dp)),
-            contentScale = ContentScale.Crop,
-            model = ImageRequest.Builder(context).data(article.urlToImage).build(),
-            contentDescription = null
-        )
-        Column(
-            modifier = Modifier
-                .padding(horizontal = ExtraSmallPadding)
-                .height(ArticleCardSize),
-            verticalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Text(
-                text = article.title,
-                style = MaterialTheme.typography.bodyMedium,
-                color = colorResource(
-                    id = R.color.text_title
-                ),
-                fontWeight = FontWeight.Bold,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-            Text(
-                modifier = modifier.padding(start = 8.dp),
-                text = article.description,
-                style = MaterialTheme.typography.bodySmall,
-                color = colorResource(
-                    id = R.color.text_title
-                ),
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
 
+        Box(modifier = Modifier.weight(0.5f)){
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = ExtraSmallPadding)
+                    .height(ArticleCardSize),
+                verticalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Text(
+                    text = article.title,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = colorResource(
+                        id = R.color.text_title
+                    ),
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    text = article.description,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = colorResource(
+                        id = R.color.text_title
+                    ),
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+
+            }
         }
+
+        Box(modifier = Modifier.weight(0.2f)){
+            AsyncImage(
+                modifier = Modifier
+                    .size(ArticleCardSize)
+                    .clip(RoundedCornerShape(8.dp)),
+                contentScale = ContentScale.Crop,
+                model = ImageRequest.Builder(context).data(article.urlToImage).build(),
+                contentDescription = null
+            )
+        }
+
     }
 }
 
