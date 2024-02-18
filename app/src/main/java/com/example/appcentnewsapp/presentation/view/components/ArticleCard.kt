@@ -53,7 +53,7 @@ fun ArticleCard(
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Text(
-                    text = article.title,
+                    text = article.title ?: "",
                     style = MaterialTheme.typography.bodyMedium,
                     color = colorResource(
                         id = R.color.text_title
@@ -63,7 +63,7 @@ fun ArticleCard(
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = article.description,
+                    text = article.description ?: "",
                     style = MaterialTheme.typography.bodySmall,
                     color = colorResource(
                         id = R.color.text_title
