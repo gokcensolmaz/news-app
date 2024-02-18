@@ -7,11 +7,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -45,7 +49,7 @@ fun ArticleCard(
     val context = LocalContext.current
     Row(modifier = modifier.clickable { onClick() }) {
 
-        Box(modifier = Modifier.weight(0.5f)){
+        Box(modifier = Modifier.weight(0.5f)) {
             Column(
                 modifier = Modifier
                     .padding(horizontal = ExtraSmallPadding)
@@ -71,11 +75,49 @@ fun ArticleCard(
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
+                Spacer(modifier = Modifier.width(ExtraSmallPadding2))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            modifier = Modifier.size(SmallIconSize),
+                            imageVector = Icons.Default.Info,
+                            contentDescription = null,
+                            tint = colorResource(id = R.color.body)
+                        )
+                        Spacer(modifier = Modifier.width(ExtraSmallPadding2))
+
+                        Text(
+                            text = article.source.name,
+                            style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
+                            color = colorResource(id = R.color.body)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(ExtraSmallPadding2))
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            modifier = Modifier.size(SmallIconSize),
+                            imageVector = Icons.Default.DateRange,
+                            contentDescription = null,
+                            tint = colorResource(id = R.color.body)
+                        )
+                        Spacer(modifier = Modifier.width(ExtraSmallPadding2))
+                        Text(
+                            text = article.publishedAt.split("T")[0],
+                            style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
+                            color = colorResource(id = R.color.body)
+                        )
+                    }
+                }
 
             }
+
         }
 
-        Box(modifier = Modifier.weight(0.2f)){
+        Box(modifier = Modifier.weight(0.2f)) {
             AsyncImage(
                 modifier = Modifier
                     .size(ArticleCardSize)
