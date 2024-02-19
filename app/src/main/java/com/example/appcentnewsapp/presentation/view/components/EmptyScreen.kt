@@ -1,6 +1,7 @@
 package com.example.appcentnewsapp.presentation.view.components
 
 import android.content.res.Configuration
+import android.util.Log
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -29,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import com.example.appcentnewsapp.R
+import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 
@@ -40,11 +42,11 @@ fun EmptyScreen(error: LoadState.Error? = null) {
         mutableStateOf(parseErrorMessage(error = error))
     }
     var icon by remember {
-        mutableIntStateOf(R.drawable.ic_network_error)
+        mutableStateOf(R.drawable.ic_network_error)
     }
 
     if (error == null) {
-        message = "You have not saved news so far !"
+        message = "No Article Saved"
         icon = R.drawable.ic_search_document
     }
 
@@ -68,6 +70,9 @@ fun EmptyScreen(error: LoadState.Error? = null) {
     )
 
 }
+
+
+
 
 @Composable
 fun EmptyContent(alphaAnimation: Float, message: String, iconId: Int) {
@@ -107,14 +112,23 @@ fun parseErrorMessage(error: LoadState.Error?): String {
             "Internet Unavailable"
         }
 
+        is HttpException -> {
+            "Bad Request"
+        }
+
         else -> {
             "Unknown Error"
         }
     }
 }
+
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun EmptyScreenPreview() {
-    EmptyContent(alphaAnimation = 0.3f, message = "Internet Unavailable.",R.drawable.ic_network_error)
+    EmptyContent(
+        alphaAnimation = 0.3f,
+        message = "Internet Unavailable.",
+        R.drawable.ic_network_error
+    )
 }

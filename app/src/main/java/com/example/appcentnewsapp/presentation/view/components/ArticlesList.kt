@@ -43,7 +43,7 @@ fun ArticlesList(
     onClick: (Article) -> Unit
 ) {
     if (articles.isEmpty()) {
-        EmptyScreen()
+        EmptyScreen() // Favorite Article List is Empty
     }
 
     LazyColumn(
@@ -78,11 +78,11 @@ fun handlePagingResult(
         }
 
         error != null -> {
-            EmptyScreen(error = error)
+            EmptyScreen(error = error) // Search Query is ""
             false
         }
         articles.itemCount == 0 ->{
-            EmptyScreen()
+            EmptyScreen() // Search event returns empty
             false
         }
 
