@@ -13,7 +13,7 @@ import com.example.appcentnewsapp.presentation.view.components.NewsTopAppBar
 @Composable
 fun WebViewScreen(url: String,navigateUp: () -> Unit) {
     Column {
-        NewsTopAppBar(title = "Web View", onBackClick = { navigateUp()})
+        NewsTopAppBar(title = "News Source", onBackClick = { navigateUp()})
         AndroidView(
             factory = {
                 WebView(it).apply {
