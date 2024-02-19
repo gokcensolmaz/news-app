@@ -1,6 +1,7 @@
 package com.example.appcentnewsapp.presentation.view.components
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,31 +24,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.example.appcentnewsapp.R
 import com.example.appcentnewsapp.data.local.Article
 import com.example.appcentnewsapp.data.remote.response.Source
+import com.example.appcentnewsapp.ui.theme.AppcentNewsAppTheme
 import com.example.appcentnewsapp.util.Dimensions.ArticleCardSize
 import com.example.appcentnewsapp.util.Dimensions.ExtraSmallPadding
 import com.example.appcentnewsapp.util.Dimensions.ExtraSmallPadding2
 import com.example.appcentnewsapp.util.Dimensions.SmallIconSize
-import com.example.appcentnewsapp.ui.theme.AppcentNewsAppTheme
 
 @Composable
 fun ArticleCard(
     modifier: Modifier = Modifier, article: Article, onClick: () -> Unit
 ) {
-    val context = LocalContext.current
-    Row(modifier = modifier.clickable { onClick() }) {
+    Row(modifier = modifier
+        .background(colorResource(id = R.color.appcent))
+        .clickable { onClick() }) {
 
         Box(modifier = Modifier.weight(0.5f)) {
             Column(

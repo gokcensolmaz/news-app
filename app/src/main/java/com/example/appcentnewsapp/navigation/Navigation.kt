@@ -37,6 +37,7 @@ import com.example.appcentnewsapp.presentation.view.search.SearchScreen
 import com.example.appcentnewsapp.presentation.view.webview.WebViewScreen
 import com.example.appcentnewsapp.presentation.viewmodel.details.DetailsEvent
 import com.example.appcentnewsapp.presentation.viewmodel.details.DetailsViewModel
+import com.example.appcentnewsapp.presentation.viewmodel.favorite.FavoriteEvent
 import com.example.appcentnewsapp.presentation.viewmodel.favorite.FavoriteViewModel
 import com.example.appcentnewsapp.presentation.viewmodel.home.HomeViewModel
 import com.example.appcentnewsapp.presentation.viewmodel.search.SearchViewModel
@@ -128,11 +129,19 @@ fun Navigation() {
             composable(Destination.FavoriteScreen.route) {
                 val viewModel: FavoriteViewModel = hiltViewModel()
                 val state = viewModel.state.value
+
+                if (viewModel.sideEffect != null) {
+                    Toast.makeText(LocalContext.current, viewModel.sideEffect, Toast.LENGTH_SHORT)
+                        .show()
+                    viewModel.onEvent(FavoriteEvent.RemoveSideEffect)
+                }
+
                 FavoriteScreen(
                     state = state,
                     navigateToDetails = { article ->
                         navigateToDetails(navController = navController, article = article)
-                    }
+                    },
+                    event = viewModel::onEvent
                 )
             }
             composable(Destination.SearchScreen.route) {

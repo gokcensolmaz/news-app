@@ -18,6 +18,8 @@ import com.example.appcentnewsapp.R
 import com.example.appcentnewsapp.data.local.Article
 import com.example.appcentnewsapp.presentation.view.components.ArticlesList
 import com.example.appcentnewsapp.presentation.view.components.NewsTopAppBar
+import com.example.appcentnewsapp.presentation.viewmodel.details.DetailsEvent
+import com.example.appcentnewsapp.presentation.viewmodel.favorite.FavoriteEvent
 import com.example.appcentnewsapp.presentation.viewmodel.favorite.FavoriteState
 import com.example.appcentnewsapp.util.Dimensions
 import com.example.appcentnewsapp.util.Dimensions.MediumPadding1
@@ -25,7 +27,8 @@ import com.example.appcentnewsapp.util.Dimensions.MediumPadding1
 @Composable
 fun FavoriteScreen(
     state: FavoriteState,
-    navigateToDetails: (Article) -> Unit
+    navigateToDetails: (Article) -> Unit,
+    event: (FavoriteEvent) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -43,7 +46,7 @@ fun FavoriteScreen(
 
         Spacer(modifier = Modifier.height(MediumPadding1))
 
-        ArticlesList(articles = state.articles, onClick = { navigateToDetails(it) })
+        ArticlesList(articles = state.articles, onClick = { navigateToDetails(it) },event = event)
 
     }
 }
