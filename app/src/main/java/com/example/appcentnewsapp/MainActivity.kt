@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.core.view.WindowCompat
-import com.example.appcentnewsapp.navigation.Navigation
+import com.example.appcentnewsapp.presentation.navigation.Navigation
 import com.example.appcentnewsapp.ui.theme.AppcentNewsAppTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint

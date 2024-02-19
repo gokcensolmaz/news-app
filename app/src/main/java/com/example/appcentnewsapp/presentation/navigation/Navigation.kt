@@ -1,4 +1,4 @@
-package com.example.appcentnewsapp.navigation
+package com.example.appcentnewsapp.presentation.navigation
 
 import android.annotation.SuppressLint
 import android.widget.Toast

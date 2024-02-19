@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -39,9 +40,9 @@ fun NewsTopAppBar(title: String? = null, onBackClick: () -> Unit) {
 
         },
         navigationIcon = {
-            if (title == "Web View") {
+            if (title == "News Source") {
                 IconButton(onClick = { onBackClick() }) {
-                    Icon(imageVector =  Icons.Default.ArrowBack, contentDescription = null)
+                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
 
                 }
             } else null
