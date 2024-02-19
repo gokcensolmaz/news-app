@@ -30,6 +30,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appcentnewsapp.R
+import com.example.appcentnewsapp.presentation.view.components.CategoryCard
+import com.example.appcentnewsapp.presentation.view.components.CategoryCardItem
 
 @Composable
 fun SearchCategoryScreen(
@@ -92,79 +94,8 @@ fun SearchCategoryScreen(
     }
 }
 
-data class CategoryCardItem(
-    val imageId: Int,
-    val contentDescription: String,
-    val title: String,
-    val onClick: (String) -> Unit
-)
-
-@Composable
-fun CategoryCard(
-    categoryCardItem: CategoryCardItem,
-    modifier: Modifier = Modifier
-) {
-    Card(
-        modifier = modifier
-            .height(150.dp)
-            .width(150.dp)
-            .padding(5.dp)
-            .clickable { categoryCardItem.onClick(categoryCardItem.title) },
-        shape = RoundedCornerShape(20.dp),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 30.dp,
-        ),
-        border = BorderStroke(width = 1.dp, color = colorResource(R.color.appcent_text))
-    ) {
-        Box(
-            modifier = Modifier
-                .height(200.dp)
-                .width(200.dp)
-        ) {
-            Image(
-                painter = painterResource(id = categoryCardItem.imageId),
-                contentDescription = categoryCardItem.contentDescription,
-                contentScale = ContentScale.Crop
-            )
-            Box(
-                modifier = Modifier
-                    .fillMaxSize(),
-                contentAlignment = Alignment.BottomStart,
-            ) {
-
-                Text(
-                    text = categoryCardItem.title,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color(0x861D262F))
-                        .padding(5.dp),
-                    color = colorResource(R.color.appcent_text),
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 17.sp
-
-                )
-
-            }
-        }
-
-    }
-}
-
 @Preview(showBackground = true)
 @Composable
 fun SearchCategoryScreenPreview() {
     SearchCategoryScreen(onClick = {})
-}
-
-@Preview(showBackground = true)
-@Composable
-fun CategoryCardPreview() {
-    CategoryCard(
-        CategoryCardItem(
-            imageId = R.drawable.business_crop,
-            contentDescription = "Business Category",
-            title = "Business",
-            onClick = {}
-        )
-    )
 }

@@ -12,6 +12,7 @@
     <color name="app_title">#000000</color>
     <color name="input_text">#000000</color>
     <color name="appcent">#FFFFFF</color>
+    <color name="appcent_transparency">#8DFFFFFF</color>
     <color name="appcent_text">#1D262F</color>
     <color name="appcent_indicator">#E2A182</color>
 </resources>
