@@ -9,6 +9,7 @@ import com.example.appcentnewsapp.data.remote.NewsPagingResource
 import com.example.appcentnewsapp.data.remote.SearchNewsPagingResource
 import com.example.appcentnewsapp.data.local.Article
 import com.example.appcentnewsapp.data.local.NewsDao
+import com.example.appcentnewsapp.data.remote.SearchCategoryNewsPagingResource
 import com.example.appcentnewsapp.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -35,6 +36,20 @@ class NewsRepositoryImpl(
             config = PagingConfig(pageSize = 10),
             pagingSourceFactory = {
                 SearchNewsPagingResource(
+                    newsApi = newsApi,
+                    searchQuery = searchQuery
+                )
+            }
+        ).flow
+    }
+
+    override fun searchNewsWithCategory(
+        searchQuery: String
+    ): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10),
+            pagingSourceFactory = {
+                SearchCategoryNewsPagingResource(
                     newsApi = newsApi,
                     searchQuery = searchQuery
                 )

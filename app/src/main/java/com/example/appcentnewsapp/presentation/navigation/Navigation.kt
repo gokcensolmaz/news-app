@@ -1,4 +1,4 @@
-package com.example.appcentnewsapp.navigation
+package com.example.appcentnewsapp.presentation.navigation
 
 import android.annotation.SuppressLint
 import android.widget.Toast
@@ -12,6 +12,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -20,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -32,8 +34,10 @@ import com.example.appcentnewsapp.presentation.view.details.DetailsScreen
 import com.example.appcentnewsapp.presentation.view.favorite.FavoriteScreen
 import com.example.appcentnewsapp.presentation.view.home.HomeScreen
 import com.example.appcentnewsapp.presentation.view.search.SearchScreen
+import com.example.appcentnewsapp.presentation.view.webview.WebViewScreen
 import com.example.appcentnewsapp.presentation.viewmodel.details.DetailsEvent
 import com.example.appcentnewsapp.presentation.viewmodel.details.DetailsViewModel
+import com.example.appcentnewsapp.presentation.viewmodel.favorite.FavoriteEvent
 import com.example.appcentnewsapp.presentation.viewmodel.favorite.FavoriteViewModel
 import com.example.appcentnewsapp.presentation.viewmodel.home.HomeViewModel
 import com.example.appcentnewsapp.presentation.viewmodel.search.SearchViewModel
@@ -53,7 +57,7 @@ fun Navigation() {
     val navController = rememberNavController()
     val backstackState = navController.currentBackStackEntryAsState().value
     var selectedItem by rememberSaveable {
-        mutableStateOf(0)
+        mutableIntStateOf(0)
     }
 
     selectedItem = remember(key1 = backstackState) {
@@ -125,11 +129,19 @@ fun Navigation() {
             composable(Destination.FavoriteScreen.route) {
                 val viewModel: FavoriteViewModel = hiltViewModel()
                 val state = viewModel.state.value
+
+                if (viewModel.sideEffect != null) {
+                    Toast.makeText(LocalContext.current, viewModel.sideEffect, Toast.LENGTH_SHORT)
+                        .show()
+                    viewModel.onEvent(FavoriteEvent.RemoveSideEffect)
+                }
+
                 FavoriteScreen(
                     state = state,
                     navigateToDetails = { article ->
                         navigateToDetails(navController = navController, article = article)
-                    }
+                    },
+                    event = viewModel::onEvent
                 )
             }
             composable(Destination.SearchScreen.route) {
@@ -158,14 +170,36 @@ fun Navigation() {
                         DetailsScreen(
                             article = article,
                             event = viewModel::onEvent,
-                            navigateUp = { navController.navigateUp() })
+                            navigateUp = { navController.navigateUp() },
+                            navigateToWebView = {
+                                navigateToWebView(
+                                    navController = navController,
+                                    article = article
+                                )
+                            }
+                        )
+
                     }
             }
             composable(Destination.WebviewScreen.route) {
-                Text(text = "Web view Screen")
+                navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")
+                    ?.let { article ->
+                        WebViewScreen(
+                            url = article.url,
+                            navigateUp = { navController.navigateUp() },
+                        )
+
+                    }
+
             }
         }
     }
+}
+
+fun navigateToWebView(navController: NavController, article: Article) {
+    navController.currentBackStackEntry?.savedStateHandle?.set("article", article)
+    navController.navigate(Destination.WebviewScreen.route)
+
 }
 
 private fun navigateToTap(navController: NavController, route: String) {

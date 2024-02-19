@@ -20,4 +20,11 @@ interface NewsApi {
         @Query("page") page: Int,
         @Query("apiKey") apiKey: String = API_KEY
     ): NewsResponse
+
+    @GET("top-headlines")
+    suspend fun searchNewsWithCategory(
+        @Query("category") searchQuery: String,
+        @Query("page") page: Int,
+        @Query("apiKey") apiKey: String = API_KEY
+    ): NewsResponse
 }

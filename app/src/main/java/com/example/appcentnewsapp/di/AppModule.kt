@@ -14,6 +14,7 @@ import com.example.appcentnewsapp.domain.useCases.GetArticleList
 import com.example.appcentnewsapp.domain.useCases.GetNews
 import com.example.appcentnewsapp.domain.useCases.NewsUseCases
 import com.example.appcentnewsapp.domain.useCases.SearchNews
+import com.example.appcentnewsapp.domain.useCases.SearchNewsWithCategory
 import com.example.appcentnewsapp.domain.useCases.UpsertArticle
 import com.example.appcentnewsapp.util.Constants.BASE_URL
 import com.example.appcentnewsapp.util.Constants.NEWS_DATABASE_NAME
@@ -54,6 +55,7 @@ object AppModule {
         return NewsUseCases(
             getNews = GetNews(newsRepository),
             searchNews = SearchNews(newsRepository),
+            searchNewsWithCategory = SearchNewsWithCategory(newsRepository),
             upsertArticle = UpsertArticle(newsRepository),
             deleteArticle = DeleteArticle(newsRepository),
             getArticle = GetArticle(newsRepository),

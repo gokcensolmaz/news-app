@@ -73,8 +73,8 @@ fun DetailsTopBarPreview() {
     AppcentNewsAppTheme(dynamicColor = false) {
         Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
             DetailsTopBar(
-                onShareClick = { /*TODO*/ },
-                onFavoriteClick = { /*TODO*/ },
+                onShareClick = { },
+                onFavoriteClick = {  },
                 onBackClick = {}
             )
 

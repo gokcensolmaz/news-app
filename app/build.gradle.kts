@@ -109,4 +109,7 @@ dependencies {
     //Paging 3
     implementation("androidx.paging:paging-runtime:3.2.1")
     implementation("androidx.paging:paging-compose:3.2.1")
+
+    // Extended Icons
+    implementation("androidx.compose.material:material-icons-extended:1.6.1")
 }
