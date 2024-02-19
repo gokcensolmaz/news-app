@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Appcent News</string>
+    <string name="empty_favorite_list">You have not saved news so far!</string>
+    <string name="search_no_query">You have not entered query!</string>
+    <string name="empty_search_list">There is no news about that!</string>
 </resources>

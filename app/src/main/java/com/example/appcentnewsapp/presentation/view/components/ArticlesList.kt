@@ -1,5 +1,6 @@
 package com.example.appcentnewsapp.presentation.view.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -7,11 +8,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import com.example.appcentnewsapp.R
 import com.example.appcentnewsapp.data.local.Article
 import com.example.appcentnewsapp.util.Dimensions.ExtraSmallPadding2
 import com.example.appcentnewsapp.util.Dimensions.MediumPadding1
+import retrofit2.HttpException
 
 
 @Composable
@@ -43,7 +47,7 @@ fun ArticlesList(
     onClick: (Article) -> Unit
 ) {
     if (articles.isEmpty()) {
-        EmptyScreen() // Favorite Article List is Empty
+        EmptyScreen(message = stringResource(R.string.empty_favorite_list)) // Favorite Article List is Empty
     }
 
     LazyColumn(
@@ -78,11 +82,19 @@ fun handlePagingResult(
         }
 
         error != null -> {
-            EmptyScreen(error = error) // Search Query is ""
+            if (error.error is HttpException) {
+                EmptyScreen(message = stringResource(R.string.search_no_query)) // Search Query is ""
+            } else {
+
+                EmptyScreen()
+            }
+
+
             false
         }
-        articles.itemCount == 0 ->{
-            EmptyScreen() // Search event returns empty
+
+        articles.itemCount == 0 -> {
+            EmptyScreen(message = stringResource(R.string.empty_search_list)) // Search event returns empty
             false
         }
 
