@@ -15,7 +15,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material3.DismissDirection
 import androidx.compose.material3.DismissState
 import androidx.compose.material3.DismissValue
@@ -212,7 +211,7 @@ fun DeleteBackground(
     ) {
         Icon(
             modifier = Modifier.size(32.dp),
-            imageVector = Icons.Default.DeleteOutline,
+            imageVector = Icons.Filled.Delete,
             contentDescription = "Remove from Favorite List",
             tint = Color.White
         )

@@ -35,6 +35,7 @@ class SearchViewModel @Inject constructor(
                 _state.value = state.value.copy(searchQuery = event.searchQuery)
                 searchNewsWithCategory(event.searchQuery)
             }
+            else -> null
         }
     }
 
